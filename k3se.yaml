@@ -1,0 +1,44 @@
+# Version may either be a specific k3s version or a release channel
+# as listed here: https://update.k3s.io/v1-release/channels
+version: stable
+
+# Cluster provides cluster-wide settings that should be applied
+# to all nodes in the cluster. All options are equivalent to the
+# commmand line options of the `k3s` command.
+cluster:
+  server:
+    # It is highly recommended to always specify this option as it
+    # is used to determine the server URL of the cluster.
+    tls-san:
+      - 10.37.100.119
+    disable:
+      - traefik
+      - servicelb
+    flannel-iface: eth0
+
+# A list of all nodes in the cluster and their connection information.
+nodes:
+  - role: server
+    ssh:
+      host: 10.37.100.120
+      user: zen
+      key-file: ~/.ssh/id_rsa
+
+  - role: server
+    ssh:
+      host: 10.37.100.121
+      user: zen
+      key-file: ~/.ssh/id_rsa
+
+  - role: server
+    ssh:
+      host: 10.37.100.122
+      user: zen
+      key-file: ~/.ssh/id_rsa
+
+  - role: agent
+    ssh:
+      host: 10.37.100.123
+      user: zen
+      key-file: ~/.ssh/id_rsa
+
